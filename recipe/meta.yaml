@@ -12,7 +12,7 @@ source:
   sha256: 335eab9270a06d18134dafe34b5a21fe26fe6926611d7f960d826d82e851abef
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   skip: true  # [np==111]
   features:
@@ -20,6 +20,7 @@ build:
 
 requirements:
   build:
+    - pkg-config  # [osx]
     - cmake
     - python
     - swig
@@ -40,10 +41,10 @@ requirements:
 test:
   imports:
     - casadi
-  source_files:
-    - test
+  files:
+    - ipopt_nl.py
   commands:
-    - cd test/python && python alltests.py
+    python ipopt_nl.py
 
 about:
   home: http://casadi.org
