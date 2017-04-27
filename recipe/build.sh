@@ -6,7 +6,8 @@ fi
 
 if [ "$(uname)" == "Linux" ]
 then
-    export CXXFLAGS="${CXXFLAGS} -L${PREFIX}/lib -lquadmath -lgfortran"
+    # export CXXFLAGS="${CXXFLAGS} -L${PREFIX}/lib -lquadmath -lgfortran"
+    export CXXFLAGS="${CXXFLAGS} -L${PREFIX}/lib"
 fi
 
 mkdir build
