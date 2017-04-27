@@ -13,8 +13,8 @@ mkdir build
 pushd build
 
 cmake $CMAKE_FLAG \
-  -DCMAKE_C_COMPILER=gcc \
-  -DCMAKE_CXX_COMPILER=g++ \
+  -DCMAKE_C_COMPILER=${CC} \
+  -DCMAKE_CXX_COMPILER=${CXX} \
   -DWITH_ECOS=ON \
   -DOLD_LLVM=OFF \
   -DWITH_CLANG=OFF \
