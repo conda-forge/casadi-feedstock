@@ -26,7 +26,6 @@ requirements:
     - python
     - swig
     - numpy x.x
-    - toolchain
     - blas 1.1 {{ variant }}
     - openblas 0.2.19|0.2.19.*
     - ipopt
