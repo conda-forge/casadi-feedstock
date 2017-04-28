@@ -22,6 +22,7 @@ requirements:
   build:
     - toolchain
     - pkg-config  # [osx]
+    - gcc  # [osx]
     - cmake
     - python
     - swig
@@ -36,6 +37,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - openblas 0.2.19|0.2.19.*
     - ipopt
+    - libgfortran
 
 test:
   requires:
