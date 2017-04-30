@@ -7,7 +7,7 @@ fi
 if [ "$(uname)" == "Linux" ]
 then
     # export CXXFLAGS="${CXXFLAGS} -L${PREFIX}/lib -lquadmath -lgfortran"
-    export CXXFLAGS="${CXXFLAGS} -L${PREFIX}/lib"
+    export CXXFLAGS="${CXXFLAGS} -L${PREFIX}/lib -Wl,-rpath-link,${PREFIX}/lib"
 fi
 
 mkdir build
@@ -31,5 +31,5 @@ cmake $CMAKE_FLAG \
   -DPYTHON_PREFIX=${SP_DIR} \
   $SRC_DIR
 
-make VERBOSE=0 -j${CPU_COUNT}
+make VERBOSE=1 -j${CPU_COUNT}
 make install
