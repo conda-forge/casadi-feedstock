@@ -12,7 +12,7 @@ source:
   sha256: 335eab9270a06d18134dafe34b5a21fe26fe6926611d7f960d826d82e851abef
 
 build:
-  number: 1
+  number: 3
   skip: true  # [win]
   skip: true  # [np==111]
   features:
@@ -20,12 +20,12 @@ build:
 
 requirements:
   build:
+    - toolchain
     - pkg-config  # [osx]
     - cmake
     - python
     - swig
     - numpy x.x
-    - gcc
     - blas 1.1 {{ variant }}
     - openblas 0.2.19|0.2.19.*
     - ipopt
@@ -33,12 +33,13 @@ requirements:
   run:
     - python
     - numpy x.x
-    - libgcc
     - blas 1.1 {{ variant }}
     - openblas 0.2.19|0.2.19.*
     - ipopt
 
 test:
+  requires:
+    - toolchain
   imports:
     - casadi
   files:
