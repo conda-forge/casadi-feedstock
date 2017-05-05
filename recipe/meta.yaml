@@ -12,7 +12,7 @@ source:
   sha256: 335eab9270a06d18134dafe34b5a21fe26fe6926611d7f960d826d82e851abef
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
   skip: true  # [np==111]
   features:
