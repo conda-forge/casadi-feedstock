@@ -27,14 +27,14 @@ requirements:
     - swig
     - numpy x.x
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
+    - openblas 0.2.19|0.2.19.*
     - ipopt
 
   run:
     - python
     - numpy x.x
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
+    - openblas 0.2.19|0.2.19.*
     - ipopt
 
 test:
