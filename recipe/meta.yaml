@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.1.1" %}
+{% set version = "3.2.2" %}
 {% set variant = "openblas" %}
 
 package:
@@ -9,12 +9,12 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 335eab9270a06d18134dafe34b5a21fe26fe6926611d7f960d826d82e851abef
+  sha256: 4ae636665cd13bd8e0af949b15a0efa4479c6ffca7f8e4bc618a973f1a5559ac
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
-  skip: true  # [np==111]
+  skip: true  # [np==111 and np==112]
   features:
     - blas_{{ variant }}
 
@@ -27,14 +27,14 @@ requirements:
     - swig
     - numpy x.x
     - blas 1.1 {{ variant }}
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - ipopt
 
   run:
     - python
     - numpy x.x
     - blas 1.1 {{ variant }}
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - ipopt
 
 test:
