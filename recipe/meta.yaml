@@ -9,7 +9,7 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 4ae636665cd13bd8e0af949b15a0efa4479c6ffca7f8e4bc618a973f1a5559ac
+  sha256: b091349fc6ded04117b9d6ee1e8fe61f987b7200af937ee1b7b26aa852b81858
 
 build:
   number: 0
