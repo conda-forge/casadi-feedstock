@@ -12,7 +12,7 @@ source:
   sha256: b091349fc6ded04117b9d6ee1e8fe61f987b7200af937ee1b7b26aa852b81858
 
 build:
-  number: 1
+  number: 200
   skip: true  # [win]
   skip: true  # [np==111 and np==112]
   features:
@@ -27,14 +27,14 @@ requirements:
     - swig
     - numpy x.x
     - blas 1.1 {{ variant }}
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - ipopt
 
   run:
     - python
     - numpy x.x
     - blas 1.1 {{ variant }}
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - ipopt
 
 test:
