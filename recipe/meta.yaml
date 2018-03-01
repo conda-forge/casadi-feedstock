@@ -25,14 +25,14 @@ requirements:
     - cmake
     - python
     - swig
-    - numpy x.x
+    - numpy 1.11.*
     - blas 1.1 {{ variant }}
     - openblas 0.2.19|0.2.19.*
     - ipopt
 
   run:
     - python
-    - numpy x.x
+    - numpy >=1.11
     - blas 1.1 {{ variant }}
     - openblas 0.2.19|0.2.19.*
     - ipopt
