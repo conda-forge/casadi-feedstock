@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.4.2" %}
+{% set version = "3.4.3" %}
 {% set variant = "openblas" %}
 
 package:
@@ -9,7 +9,7 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 75360ced125369e2440ed4b1f4f1b844a591b83b36384dd7f70a7a170b45db2a
+  sha256: 2d369833f171f024a313c1aa22ce7a811b9af67b8b8f1e42506327b15e852e1f
 
 build:
   number: 0
