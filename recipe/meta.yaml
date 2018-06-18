@@ -20,21 +20,24 @@ build:
 
 requirements:
   build:
-    - toolchain
     - pkg-config  # [osx]
     - cmake
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     - python
     - swig
-    - numpy 1.11.*
+    - numpy
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
+    - openblas
     - ipopt
 
   run:
     - python
-    - numpy >=1.11
+    - {{ pin_compatible('numpy') }}
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
+    - openblas
     - ipopt
 
 test:
