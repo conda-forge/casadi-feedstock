@@ -41,8 +41,6 @@ requirements:
     - ipopt
 
 test:
-  requires:
-    - toolchain
   imports:
     - casadi
   files:
