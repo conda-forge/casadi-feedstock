@@ -12,8 +12,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [win and vc<14]
-  skip: true  # [py<35]
+  skip: True  # [win and vc<14]
+  skip: True  # [py<35]
   features:
 
 requirements:
