@@ -15,5 +15,5 @@ make VERBOSE=1 -j${CPU_COUNT}
 make install
 
 # Change a line of code that won't work with new version of python
-sed -i 's/_object/object/' $SP_DIR/casadi/casadi.py
+sed -i'.original' 's/_object/object/' $SP_DIR/casadi/casadi.py
 
