@@ -1,7 +1,8 @@
 mkdir build
 pushd build
 
-cmake $CMAKE_FLAG \
+cmake $SRC_DIR \
+  -GNinja \
   -DWITH_PYTHON=ON \
   -DWITH_PYTHON3=ON \
   -DWITH_LAPACK=ON \
@@ -9,10 +10,8 @@ cmake $CMAKE_FLAG \
   -DWITH_JSON=ON \
   -DCMAKE_INSTALL_PREFIX=${PREFIX}\
   -DPYTHON_PREFIX=${SP_DIR} \
-  $SRC_DIR
-
-make VERBOSE=1 -j${CPU_COUNT}
-make install
+  
+ninja install
 
 # Change a line of code that won't work with new version of python
 sed -i'.original' 's/_object/object/' $SP_DIR/casadi/casadi.py

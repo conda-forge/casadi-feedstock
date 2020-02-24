@@ -20,6 +20,7 @@ requirements:
   build:
     - pkgconfig 
     - cmake
+    - ninja
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}

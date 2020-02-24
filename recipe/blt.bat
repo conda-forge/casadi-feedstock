@@ -3,7 +3,7 @@ mkdir build
 cd build
 
 cmake ../^
-    -G"%CMAKE_GENERATOR%"^
+    -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
     -DCMAKE_INSTALL_PREFIX="%PREFIX%"^
     -DWITH_SELFCONTAINED=OFF^
@@ -15,8 +15,4 @@ cmake ../^
     -DWITH_JSON=ON^
     -DPYTHON_PREFIX=%PREFIX% 
 
-
-cmake --build ./^
-    --config Release^
-    --target install
-
+ninja install
