@@ -14,7 +14,9 @@ build:
   number: 0
   skip: True  # [win and vc<14]
   skip: True  # [py<35 or py>37]
-  features:
+  rpaths:
+    - lib/
+    - lib/{{ name }}/
 
 requirements:
   build:
