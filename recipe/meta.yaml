@@ -18,7 +18,7 @@ build:
 
 requirements:
   build:
-    - pkgconfig 
+    - pkg-config
     - cmake
     - ninja
     - {{ compiler('fortran') }}
