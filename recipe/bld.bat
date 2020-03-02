@@ -1,0 +1,18 @@
+
+mkdir build
+cd build
+
+cmake ../^
+    -GNinja^
+    -DCMAKE_BUILD_TYPE=Release^
+    -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%"^
+    -DWITH_SELFCONTAINED=OFF^
+    -DWITH_SELFCONTAINED=OFF^
+    -DWITH_PYTHON=OFF^
+    -DWITH_PYTHON3=OFF^
+    -DWITH_LAPACK=ON^
+    -DWITH_IPOPT=OFF^
+    -DWITH_JSON=ON^
+    -DPYTHON_PREFIX=%PREFIX% 
+
+ninja install
