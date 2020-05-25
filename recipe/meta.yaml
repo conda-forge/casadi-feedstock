@@ -12,6 +12,7 @@ source:
 
 build:
   number: 5
+  skip: True  # [win and py]
   skip: True  # [py<36]
   rpaths:
     - lib/
@@ -42,11 +43,11 @@ requirements:
 
 test:
   imports:
-    - casadi
+    - casadi  # [not win]
   files:
-    - ipopt_nl.py
+    - ipopt_nl.py  # [not win]
   commands:
-    python ipopt_nl.py
+    python ipopt_nl.py  # [not win]
 
 about:
   home: http://casadi.org
