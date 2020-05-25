@@ -1,7 +1,7 @@
-backend:
-- casadi
-backend_name_in_build:
-- Casadi
+c_compiler:
+- gcc
+c_compiler_version:
+- '7'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -12,6 +12,14 @@ cxx_compiler_version:
 - '7'
 docker_image:
 - condaforge/linux-anvil-comp7
+fortran_compiler:
+- gfortran
+fortran_compiler_version:
+- '7'
+libblas:
+- 3.8 *netlib
+libcblas:
+- 3.8 *netlib
 numpy:
 - '1.14'
 pin_run_as_build:
@@ -19,7 +27,4 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.6.* *_cpython
-zip_keys:
-- - backend
-  - backend_name_in_build
+- 3.8.* *_cpython
