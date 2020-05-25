@@ -8,11 +8,23 @@ jobs:
     vmImage: macOS-10.14
   strategy:
     matrix:
-      osx_python3.6.____cpython:
-        CONFIG: osx_python3.6.____cpython
+      osx_backendcasadibackend_name_in_buildCasadipython3.6.____cpython:
+        CONFIG: osx_backendcasadibackend_name_in_buildCasadipython3.6.____cpython
         UPLOAD_PACKAGES: 'True'
-      osx_python3.7.____cpython:
-        CONFIG: osx_python3.7.____cpython
+      osx_backendcasadibackend_name_in_buildCasadipython3.7.____cpython:
+        CONFIG: osx_backendcasadibackend_name_in_buildCasadipython3.7.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_backendcasadibackend_name_in_buildCasadipython3.8.____cpython:
+        CONFIG: osx_backendcasadibackend_name_in_buildCasadipython3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_backendeigenbackend_name_in_buildEigen3python3.6.____cpython:
+        CONFIG: osx_backendeigenbackend_name_in_buildEigen3python3.6.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_backendeigenbackend_name_in_buildEigen3python3.7.____cpython:
+        CONFIG: osx_backendeigenbackend_name_in_buildEigen3python3.7.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_backendeigenbackend_name_in_buildEigen3python3.8.____cpython:
+        CONFIG: osx_backendeigenbackend_name_in_buildEigen3python3.8.____cpython
         UPLOAD_PACKAGES: 'True'
     maxParallel: 8
   timeoutInMinutes: 360
@@ -27,3 +39,5 @@ jobs:
     displayName: Run OSX build
     env:
       BINSTAR_TOKEN: $(BINSTAR_TOKEN)
+      FEEDSTOCK_TOKEN: $(FEEDSTOCK_TOKEN)
+      STAGING_BINSTAR_TOKEN: $(STAGING_BINSTAR_TOKEN)

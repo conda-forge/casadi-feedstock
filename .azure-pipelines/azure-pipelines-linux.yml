@@ -8,12 +8,28 @@ jobs:
     vmImage: ubuntu-16.04
   strategy:
     matrix:
-      linux_python3.6.____cpython:
-        CONFIG: linux_python3.6.____cpython
+      linux_backendcasadibackend_name_in_buildCasadipython3.6.____cpython:
+        CONFIG: linux_backendcasadibackend_name_in_buildCasadipython3.6.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
-      linux_python3.7.____cpython:
-        CONFIG: linux_python3.7.____cpython
+      linux_backendcasadibackend_name_in_buildCasadipython3.7.____cpython:
+        CONFIG: linux_backendcasadibackend_name_in_buildCasadipython3.7.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-comp7
+      linux_backendcasadibackend_name_in_buildCasadipython3.8.____cpython:
+        CONFIG: linux_backendcasadibackend_name_in_buildCasadipython3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-comp7
+      linux_backendeigenbackend_name_in_buildEigen3python3.6.____cpython:
+        CONFIG: linux_backendeigenbackend_name_in_buildEigen3python3.6.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-comp7
+      linux_backendeigenbackend_name_in_buildEigen3python3.7.____cpython:
+        CONFIG: linux_backendeigenbackend_name_in_buildEigen3python3.7.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-comp7
+      linux_backendeigenbackend_name_in_buildEigen3python3.8.____cpython:
+        CONFIG: linux_backendeigenbackend_name_in_buildEigen3python3.8.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
     maxParallel: 8
@@ -35,3 +51,5 @@ jobs:
     displayName: Run docker build
     env:
       BINSTAR_TOKEN: $(BINSTAR_TOKEN)
+      FEEDSTOCK_TOKEN: $(FEEDSTOCK_TOKEN)
+      STAGING_BINSTAR_TOKEN: $(STAGING_BINSTAR_TOKEN)
