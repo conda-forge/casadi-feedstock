@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.5.1" %}
+{% set version = "3.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -8,12 +8,12 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 73eb096837bee2d1bbdfb8565f07c4a9d62b30cf831ad1ce3196df1f1770ae4d
+  sha256: 7107e9dad9c6ffd6433e68f646a7b8da9e37daf7e7dd69e828b3f486cd428443
 
 build:
-  number: 5
-  skip: True  # [win and py]
-  skip: True  # [py<36]
+  number: 0
+  skip: true  # [win and py]
+  skip: true  # [py<36]
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -46,14 +46,13 @@ test:
     - casadi  # [not win]
   files:
     - ipopt_nl.py  # [not win]
-  commands:
-    python ipopt_nl.py  # [not win]
+  commands: python ipopt_nl.py  # [not win]
 
 about:
   home: http://casadi.org
   license: LGPL-3.0-or-later
   license_file: LICENSE.txt
-  summary: 'CasADi is a symbolic framework for numeric optimization'
+  summary: CasADi is a symbolic framework for numeric optimization
 
 extra:
   recipe-maintainers:
