@@ -46,7 +46,7 @@ test:
     - casadi  # [not win]
   files:
     - ipopt_nl.py  # [not win]
-  commands: python ipopt_nl.py # [not win]
+  commands: python ipopt_nl.py  # [not win]
 
 about:
   home: http://casadi.org
