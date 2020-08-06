@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.5.2" %}
+{% set version = "3.5.3" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 7107e9dad9c6ffd6433e68f646a7b8da9e37daf7e7dd69e828b3f486cd428443
+  sha256: 25c98f9e91c3fcee0656b32d680ceca278c014c10b81852017f13acdd5972295
 
 build:
   number: 0
