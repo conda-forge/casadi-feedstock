@@ -11,7 +11,7 @@ source:
   sha256: 3b26e73ceb48cd9d713e3727e4038afa0e93471f014f8aaccdd77da382e2249a
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and py]
   skip: true  # [py<36]
   rpaths:
