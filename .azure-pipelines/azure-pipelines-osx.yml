@@ -17,6 +17,9 @@ jobs:
       osx_64_fortran_compiler_version7numpy1.16python3.8.____cpython:
         CONFIG: osx_64_fortran_compiler_version7numpy1.16python3.8.____cpython
         UPLOAD_PACKAGES: 'True'
+      osx_64_fortran_compiler_version7numpy1.18python3.6.____73_pypy:
+        CONFIG: osx_64_fortran_compiler_version7numpy1.18python3.6.____73_pypy
+        UPLOAD_PACKAGES: 'True'
       osx_64_fortran_compiler_version7numpy1.19python3.9.____cpython:
         CONFIG: osx_64_fortran_compiler_version7numpy1.19python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -28,6 +31,9 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_64_fortran_compiler_version9numpy1.16python3.8.____cpython:
         CONFIG: osx_64_fortran_compiler_version9numpy1.16python3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_64_fortran_compiler_version9numpy1.18python3.6.____73_pypy:
+        CONFIG: osx_64_fortran_compiler_version9numpy1.18python3.6.____73_pypy
         UPLOAD_PACKAGES: 'True'
       osx_64_fortran_compiler_version9numpy1.19python3.9.____cpython:
         CONFIG: osx_64_fortran_compiler_version9numpy1.19python3.9.____cpython

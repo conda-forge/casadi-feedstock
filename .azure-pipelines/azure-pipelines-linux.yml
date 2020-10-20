@@ -20,6 +20,10 @@ jobs:
         CONFIG: linux_64_c_compiler_version7cxx_compiler_version7fortran_compiler_version7numpy1.16python3.8.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
+      linux_64_c_compiler_version7cxx_compiler_version7fortran_compiler_version7numpy1.18python3.6.____73_pypy:
+        CONFIG: linux_64_c_compiler_version7cxx_compiler_version7fortran_compiler_version7numpy1.18python3.6.____73_pypy
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-comp7
       linux_64_c_compiler_version7cxx_compiler_version7fortran_compiler_version7numpy1.19python3.9.____cpython:
         CONFIG: linux_64_c_compiler_version7cxx_compiler_version7fortran_compiler_version7numpy1.19python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -34,6 +38,10 @@ jobs:
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
       linux_64_c_compiler_version9cxx_compiler_version9fortran_compiler_version9numpy1.16python3.8.____cpython:
         CONFIG: linux_64_c_compiler_version9cxx_compiler_version9fortran_compiler_version9numpy1.16python3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-comp7
+      linux_64_c_compiler_version9cxx_compiler_version9fortran_compiler_version9numpy1.18python3.6.____73_pypy:
+        CONFIG: linux_64_c_compiler_version9cxx_compiler_version9fortran_compiler_version9numpy1.18python3.6.____73_pypy
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
       linux_64_c_compiler_version9cxx_compiler_version9fortran_compiler_version9numpy1.19python3.9.____cpython:
