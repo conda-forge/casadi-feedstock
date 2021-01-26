@@ -1,12 +1,7 @@
 mkdir build
 cd build
 
-conda list
-dir %CONDA_PREFIX%\Library\lib\pkgconfig
-dir %CONDA_PREFIX%\Library\lib
-dir %CONDA_PREFIX%\Library\include
-dir %CONDA_PREFIX%\Library\include\coin-or
-
+set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig;
 
 where pkg-config 
 pkg-config --list-all
