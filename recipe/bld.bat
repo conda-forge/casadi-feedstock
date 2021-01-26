@@ -1,6 +1,12 @@
 mkdir build
 cd build
 
+pkg-config --exists --print-errors --debug ipopt
+if errorlevel 1 exit 1
+
+pkg-config --validate --print-errors --debug ipopt
+if errorlevel 1 exit 1
+
 cmake ../^
     -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
