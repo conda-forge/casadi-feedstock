@@ -1,6 +1,9 @@
 mkdir build
 cd build
 
+where pkg-config 
+pkg-config --list-all
+pkg-config --variable pc_path pkg-config
 pkg-config --exists --print-errors --debug ipopt
 if errorlevel 1 exit 1
 
