@@ -1,6 +1,13 @@
 mkdir build
 cd build
 
+conda list
+dir %CONDA_PREFIX%\Library\lib\pkgconfig
+dir %CONDA_PREFIX%\Library\lib
+dir %CONDA_PREFIX%\Library\include
+dir %CONDA_PREFIX%\Library\include\coin-or
+
+
 where pkg-config 
 pkg-config --list-all
 pkg-config --variable pc_path pkg-config
