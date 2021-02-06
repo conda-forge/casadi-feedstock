@@ -1,3 +1,5 @@
+set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig; 
+
 mkdir build
 cd build
 
