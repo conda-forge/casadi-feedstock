@@ -1,26 +1,15 @@
 mkdir build
 cd build
 
-set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig;
-
-where pkg-config 
-pkg-config --list-all
-pkg-config --variable pc_path pkg-config
-pkg-config --exists --print-errors --debug ipopt
-if errorlevel 1 exit 1
-
-pkg-config --validate --print-errors --debug ipopt
-if errorlevel 1 exit 1
-
 cmake ../^
     -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
+    -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%"^
     -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%"^
-    -DINCLUDE_PREFIX="%LIBRARY_INC%"^
-    -DCMAKE_PREFIX="%LIBRARY_PREFIX%"^
-    -DLIB_PREFIX="%LIBRARY_LIB%"^
-    -DBIN_PREFIX="%LIBRARY_BIN%"^
-    -DWITH_SELFCONTAINED=OFF^
+    -DINCLUDE_PREFIX=include^
+    -DCMAKE_PREFIX=lib/cmake/casadi^
+    -DLIB_PREFIX=lib^
+    -DBIN_PREFIX=bin^
     -DWITH_SELFCONTAINED=OFF^
     -DWITH_PYTHON=ON^
     -DWITH_PYTHON3=ON^
