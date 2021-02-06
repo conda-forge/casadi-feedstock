@@ -21,4 +21,6 @@ cmake ../^
     -DWITH_JSON=ON^
     -DPYTHON_PREFIX=%SP_DIR% 
 
+type CMakeCache.txt
+
 ninja install
