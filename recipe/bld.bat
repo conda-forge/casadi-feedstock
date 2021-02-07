@@ -22,4 +22,6 @@ cmake ../^
     -DPYTHON_PREFIX=%SP_DIR%^
     -DWITH_COPYSIGN_UNDEF=ON
 
+type CMakeCache.txt
+
 ninja install
