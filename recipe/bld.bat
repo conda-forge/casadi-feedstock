@@ -19,8 +19,7 @@ cmake ../^
     -DWITH_IPOPT=ON^
     -DWITH_THREAD=OFF^
     -DWITH_JSON=ON^
-    -DPYTHON_PREFIX=%SP_DIR% 
-
-type CMakeCache.txt
+    -DPYTHON_PREFIX=%SP_DIR%^
+    -DWITH_COPYSIGN_UNDEF=ON
 
 ninja install
