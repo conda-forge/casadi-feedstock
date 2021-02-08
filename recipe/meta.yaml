@@ -11,8 +11,7 @@ source:
   sha256: 3b26e73ceb48cd9d713e3727e4038afa0e93471f014f8aaccdd77da382e2249a
 
 build:
-  number: 2
-  skip: true  # [win and py]
+  number: 3
   skip: true  # [py<36]
   rpaths:
     - lib/
@@ -43,10 +42,10 @@ requirements:
 
 test:
   imports:
-    - casadi  # [not win]
+    - casadi
   files:
-    - ipopt_nl.py  # [not win]
-  commands: python ipopt_nl.py  # [not win]
+    - ipopt_nl.py
+  commands: python ipopt_nl.py
 
 about:
   home: http://casadi.org

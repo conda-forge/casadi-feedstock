@@ -1,3 +1,4 @@
+set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig; 
 
 mkdir build
 cd build
@@ -5,12 +6,12 @@ cd build
 cmake ../^
     -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
+    -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%"^
     -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%"^
-    -DINCLUDE_PREFIX="%LIBRARY_INC%"^
-    -DCMAKE_PREFIX="%LIBRARY_PREFIX%"^
-    -DLIB_PREFIX="%LIBRARY_LIB%"^
-    -DBIN_PREFIX="%LIBRARY_BIN%"^
-    -DWITH_SELFCONTAINED=OFF^
+    -DINCLUDE_PREFIX:PATH=include^
+    -DCMAKE_PREFIX:PATH=lib/cmake/casadi^
+    -DLIB_PREFIX:PATH=lib^
+    -DBIN_PREFIX:PATH=bin^
     -DWITH_SELFCONTAINED=OFF^
     -DWITH_PYTHON=ON^
     -DWITH_PYTHON3=ON^
@@ -18,6 +19,7 @@ cmake ../^
     -DWITH_IPOPT=ON^
     -DWITH_THREAD=ON^
     -DWITH_JSON=ON^
-    -DPYTHON_PREFIX=%PREFIX% 
+    -DPYTHON_PREFIX=%SP_DIR%^
+    -DWITH_COPYSIGN_UNDEF=ON
 
 ninja install
