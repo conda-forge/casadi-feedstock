@@ -112,20 +112,3 @@ index e1a9f19b6e..014841e1c8 100644
  
      m->fstats["preprocessing"]  = FStats();
      m->fstats["solver"]         = FStats();
-
-From d6542976e1ae0f59df0bb9941c96176fb660c25a Mon Sep 17 00:00:00 2001
-From: Giulio Romualdi <giulio.romualdi@gmail.com>
-Date: Tue, 12 Jan 2021 10:20:36 +0100
-Subject: [PATCH 4/4] Update the osqp submodule to osqp 0.6.2
-
----
- external_packages/osqp/osqp | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/external_packages/osqp/osqp b/external_packages/osqp/osqp
-index 0baddd36bd..f9fc23d343 160000
---- a/external_packages/osqp/osqp
-+++ b/external_packages/osqp/osqp
-@@ -1 +1 @@
--Subproject commit 0baddd36bd57ec1cace0a52c6dd9663e8f16df0a
-+Subproject commit f9fc23d3436e4b17dd2cb95f70cfa1f37d122c24
