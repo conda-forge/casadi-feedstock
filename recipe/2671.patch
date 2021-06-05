@@ -1,0 +1,162 @@
+From 19b42b5bdbb4157d8327eb0bb130125d534df98a Mon Sep 17 00:00:00 2001
+From: Giulio Romualdi <giulio.romualdi@gmail.com>
+Date: Wed, 7 Oct 2020 23:37:06 +0200
+Subject: [PATCH 1/4] Update the osqp submodule to osqp 0.6.0
+
+---
+ .gitmodules                 | 2 +-
+ external_packages/osqp/osqp | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/.gitmodules b/.gitmodules
+index d5d2a022a2..fb09c81ff9 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -9,7 +9,7 @@
+ 	url = https://github.com/snopt/snopt-interface.git
+ [submodule "external_packages/osqp/osqp"]
+ 	path = external_packages/osqp/osqp
+-	url = https://github.com/jgillis/osqp.git
++	url = https://github.com/oxfordcontrol/osqp.git
+ [submodule "external_packages/superscs"]
+ 	path = external_packages/superscs
+ 	url = https://github.com/jgillis/scs.git
+diff --git a/external_packages/osqp/osqp b/external_packages/osqp/osqp
+index cee489483c..0baddd36bd 160000
+--- a/external_packages/osqp/osqp
++++ b/external_packages/osqp/osqp
+@@ -1 +1 @@
+-Subproject commit cee489483c505151b0565a35003a428535e96c9f
++Subproject commit 0baddd36bd57ec1cace0a52c6dd9663e8f16df0a
+
+From 5474cb2ea15633ed595c2fd27e6b7ecd77f2de62 Mon Sep 17 00:00:00 2001
+From: Giulio Romualdi <giulio.romualdi@gmail.com>
+Date: Wed, 7 Oct 2020 23:38:48 +0200
+Subject: [PATCH 2/4] Add the possibility to use a systemwise installation of
+ osqp
+
+---
+ casadi/interfaces/osqp/CMakeLists.txt | 10 +++++++++-
+ external_packages/osqp/CMakeLists.txt | 15 +++++++--------
+ 2 files changed, 16 insertions(+), 9 deletions(-)
+
+diff --git a/casadi/interfaces/osqp/CMakeLists.txt b/casadi/interfaces/osqp/CMakeLists.txt
+index 80a45b3a3d..9a12507e3e 100644
+--- a/casadi/interfaces/osqp/CMakeLists.txt
++++ b/casadi/interfaces/osqp/CMakeLists.txt
+@@ -1,5 +1,7 @@
+ cmake_minimum_required(VERSION 2.8.6)
+ 
++option(USE_SYSTEM_WISE_OSQP "Use a systemwise installation of osqp" OFF)
++
+ include_directories(../)
+ 
+ casadi_plugin(Conic osqp
+@@ -7,7 +9,13 @@ casadi_plugin(Conic osqp
+   osqp_interface.cpp
+   osqp_interface_meta.cpp)
+ 
+-casadi_plugin_link_libraries(Conic osqp osqp)
++# Add the possibility to use a systemwise installation of casadi
++if(USE_SYSTEM_WISE_OSQP)
++  find_package(osqp REQUIRED)
++  casadi_plugin_link_libraries(Conic osqp osqp::osqp)
++else()
++  casadi_plugin_link_libraries(Conic osqp osqp)
++endif()
+ 
+ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+ set_target_properties(casadi_conic_osqp PROPERTIES COMPILE_FLAGS "-Wno-unused-variable -Wno-unknown-warning-option")
+diff --git a/external_packages/osqp/CMakeLists.txt b/external_packages/osqp/CMakeLists.txt
+index 4405caa808..57828054b2 100644
+--- a/external_packages/osqp/CMakeLists.txt
++++ b/external_packages/osqp/CMakeLists.txt
+@@ -1,10 +1,9 @@
+ cmake_minimum_required(VERSION 2.8.6)
+ 
+-#set(EMBEDDED 1)
+-set(ENABLE_MKL_PARDISO OFF CACHE BOOL "Enable MKL Pardiso solver")
+-set(PROFILING OFF CACHE BOOL "Enable solver profiling (timing)")
+-set(CMAKE_INSTALL_INCLUDEDIR ${INCLUDE_PREFIX})
+-set(CMAKE_INSTALL_LIBDIR ${LIB_PREFIX})
+-set(CMAKE_INSTALL_BINDIR ${BIN_PREFIX})
+-add_subdirectory(osqp)
+-
++if(NOT USE_SYSTEM_WISE_OSQP)
++  set(ENABLE_MKL_PARDISO OFF CACHE BOOL "Enable MKL Pardiso solver")
++  set(CMAKE_INSTALL_INCLUDEDIR ${INCLUDE_PREFIX})
++  set(CMAKE_INSTALL_LIBDIR ${LIB_PREFIX})
++  set(CMAKE_INSTALL_BINDIR ${BIN_PREFIX})
++  add_subdirectory(osqp)
++endif()
+
+From a26cd8ffba99052b74553eec1daeff640eea7e79 Mon Sep 17 00:00:00 2001
+From: Giulio Romualdi <giulio.romualdi@gmail.com>
+Date: Wed, 7 Oct 2020 23:39:25 +0200
+Subject: [PATCH 3/4] Update osqp_interface in order to be compliant with osqp
+ v0.6.0
+
+---
+ casadi/interfaces/osqp/osqp_interface.cpp | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/casadi/interfaces/osqp/osqp_interface.cpp b/casadi/interfaces/osqp/osqp_interface.cpp
+index e1a9f19b6e..014841e1c8 100644
+--- a/casadi/interfaces/osqp/osqp_interface.cpp
++++ b/casadi/interfaces/osqp/osqp_interface.cpp
+@@ -151,13 +151,16 @@ namespace casadi {
+     if (Conic::init_mem(mem)) return 1;
+     auto m = static_cast<OsqpMemory*>(mem);
+ 
++    // convert H in a upper triangular matrix. This is required by osqp v0.6.0
++    Sparsity H_triu = Sparsity::triu(H_);
++
+     Sparsity Asp = vertcat(Sparsity::diag(nx_), A_);
+     std::vector<double> dummy(max(nx_+na_, max(Asp.nnz(), H_.nnz())));
+ 
+     std::vector<c_int> A_row = vector_static_cast<c_int>(Asp.get_row());
+     std::vector<c_int> A_colind = vector_static_cast<c_int>(Asp.get_colind());
+-    std::vector<c_int> H_row = vector_static_cast<c_int>(H_.get_row());
+-    std::vector<c_int> H_colind = vector_static_cast<c_int>(H_.get_colind());
++    std::vector<c_int> H_row = vector_static_cast<c_int>(H_triu.get_row());
++    std::vector<c_int> H_colind = vector_static_cast<c_int>(H_triu.get_colind());
+ 
+     csc A;
+     A.m = nx_ + na_;
+@@ -171,8 +174,8 @@ namespace casadi {
+     csc H;
+     H.m = nx_;
+     H.n = nx_;
+-    H.nz = H_.nnz();
+-    H.nzmax = H_.nnz();
++    H.nz = H_triu.nnz_upper();
++    H.nzmax = H_triu.nnz_upper();
+     H.x = get_ptr(dummy);
+     H.i = get_ptr(H_row);
+     H.p = get_ptr(H_colind);
+@@ -189,7 +192,7 @@ namespace casadi {
+     data.u = get_ptr(dummy);
+ 
+     // Setup workspace
+-    m->work = osqp_setup(&data, &settings_);
++    if(osqp_setup(&m->work, &data, &settings_)) return 1;
+ 
+     m->fstats["preprocessing"]  = FStats();
+     m->fstats["solver"]         = FStats();
+
+From d6542976e1ae0f59df0bb9941c96176fb660c25a Mon Sep 17 00:00:00 2001
+From: Giulio Romualdi <giulio.romualdi@gmail.com>
+Date: Tue, 12 Jan 2021 10:20:36 +0100
+Subject: [PATCH 4/4] Update the osqp submodule to osqp 0.6.2
+
+---
+ external_packages/osqp/osqp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/external_packages/osqp/osqp b/external_packages/osqp/osqp
+index 0baddd36bd..f9fc23d343 160000
+--- a/external_packages/osqp/osqp
++++ b/external_packages/osqp/osqp
+@@ -1 +1 @@
+-Subproject commit 0baddd36bd57ec1cace0a52c6dd9663e8f16df0a
++Subproject commit f9fc23d3436e4b17dd2cb95f70cfa1f37d122c24
