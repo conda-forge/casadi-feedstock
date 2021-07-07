@@ -18,6 +18,8 @@ fortran_compiler:
 - gfortran
 fortran_compiler_version:
 - '9'
+ipopt:
+- '3.14'
 libblas:
 - 3.8 *netlib
 libcblas:
