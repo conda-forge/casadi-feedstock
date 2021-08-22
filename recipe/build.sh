@@ -17,4 +17,4 @@ ninja install
 
 # Change a line of code that won't work with new version of python
 sed -i'.original' 's/_object/object/' $SP_DIR/casadi/casadi.py
-
+rm $SP_DIR/casadi/casadi.py.original 
