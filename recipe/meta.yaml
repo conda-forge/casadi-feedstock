@@ -49,7 +49,11 @@ test:
     - casadi
   files:
     - ipopt_nl.py
-  commands: python ipopt_nl.py
+  commands: 
+    - python ipopt_nl.py
+    - test $(pip list | grep casadi | tr -s " " | grep $PKG_VERSION | wc -l) -eq 1  # [unix]
+  requires:
+    - pip
 
 about:
   home: http://casadi.org
