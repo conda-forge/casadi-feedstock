@@ -1,7 +1,7 @@
 mkdir build
 pushd build
 
-cmake $SRC_DIR \
+cmake ${CMAKE_ARGS} $SRC_DIR \
   -GNinja \
   -DWITH_PYTHON=ON \
   -DWITH_PYTHON3=ON \
