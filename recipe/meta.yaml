@@ -14,8 +14,7 @@ source:
     - 2878.patch
 
 build:
-  number: 8
-  skip: true  # [py<36]
+  number: 9
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -30,11 +29,14 @@ requirements:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
+    - swig
   host:
     - libblas
     - libcblas
     - python
-    - swig
     - numpy
     - ipopt
     - libosqp
