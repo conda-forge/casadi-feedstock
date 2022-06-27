@@ -39,7 +39,7 @@ requirements:
     - python
     - numpy
     - libosqp
-
+    - ipopt
   run:
     - python
     - {{ pin_compatible('numpy') }}
