@@ -38,13 +38,12 @@ requirements:
     - libcblas
     - python
     - numpy
-    - ipopt 3.14.7
     - libosqp
 
   run:
     - python
     - {{ pin_compatible('numpy') }}
-    - ipopt 3.14.7
+
 
 test:
   imports:
