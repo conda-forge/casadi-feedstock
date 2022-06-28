@@ -14,7 +14,7 @@ source:
     - 2878.patch
 
 build:
-  number: 9
+  number: 10
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -38,13 +38,12 @@ requirements:
     - libcblas
     - python
     - numpy
-    - ipopt
     - libosqp
-
+    - ipopt
   run:
     - python
     - {{ pin_compatible('numpy') }}
-    - ipopt
+
 
 test:
   imports:
