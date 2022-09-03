@@ -14,7 +14,7 @@ source:
     - 2878.patch
 
 build:
-  number: 11
+  number: 12
   rpaths:
     - lib/
     - lib/{{ name }}/
