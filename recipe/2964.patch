@@ -1,0 +1,119 @@
+From 3374782c4eb45c236eedb8627e46f9bf34660a75 Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Wed, 19 Oct 2022 10:08:40 +0200
+Subject: [PATCH 1/2] Support external qpOASES
+
+---
+ CMakeLists.txt | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 19e4d02c93..a1c69492b3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -620,14 +620,22 @@ endif()
+ add_feature_info(lapack-interface WITH_LAPACK "Interface to LAPACK.")
+ 
+ # qpOASES: An active-set QP solver
+-option(WITH_QPOASES "Compile the interface to qpOASES (the source code for qpOASES is included)" ${WITH_QPOASES_DEF})
++option(WITH_BUILD_QPOASES "Compile the the included source code for qpOASES" ${WITH_QPOASES_DEF})
++option(WITH_QPOASES "Compile the interface to qpOASES" ${WITH_QPOASES_DEF})
+ option(WITH_NO_QPOASES_BANNER "Add -D__NO_COPYRIGHT__ to qpOASES definitions" OFF)
+ if(WITH_QPOASES)
+-  if (NOT WITH_LAPACK)
+-     message(FATAL_ERROR "WITH_QPOASES requires WITH_LAPACK.")
++  if(WITH_BUILD_QPOASES)
++    if (NOT WITH_LAPACK)
++      message(FATAL_ERROR "WITH_BUILD_QPOASES requires WITH_LAPACK.")
++    endif()
++    set(QPOASES_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external_packages/qpOASES/include)
++    set(QPOASES_LIBRARIES casadi_qpoases)
++  else()
++    # Already defined in the imported target
++    find_package(qpOASES REQUIRED)
++    set(QPOASES_INCLUDE_DIR "")
++    set(QPOASES_LIBRARIES qpOASES::qpOASES)
+   endif()
+-  set(QPOASES_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external_packages/qpOASES/include)
+-  set(QPOASES_LIBRARIES casadi_qpoases)
+ endif()
+ add_feature_info(qpoases-interface WITH_QPOASES "Interface to the active-set QP solver qpOASES.")
+ 
+
+From f9d27702c70c341cb97155b5005b242f32b057bd Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Wed, 19 Oct 2022 10:20:37 +0200
+Subject: [PATCH 2/2] Add FindqpOASES.cmake
+
+---
+ cmake/FindqpOASES.cmake | 61 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 cmake/FindqpOASES.cmake
+
+diff --git a/cmake/FindqpOASES.cmake b/cmake/FindqpOASES.cmake
+new file mode 100644
+index 0000000000..ab2e17df3d
+--- /dev/null
++++ b/cmake/FindqpOASES.cmake
+@@ -0,0 +1,61 @@
++#[=======================================================================[.rst:
++FindqpOASES
++--------
++
++Find the qpOASES includes and library.
++
++IMPORTED Targets
++^^^^^^^^^^^^^^^^
++
++This module defines IMPORTED target ``qpOASES::qpOASES``, if
++qpOASES has been found.
++
++#]=======================================================================]
++
++# Try each search configuration.
++find_path(qpOASES_INCLUDE_DIR NAMES qpOASES.h PATH_SUFFIXES include)
++
++# Allow qpOASES_LIBRARY to be set manually, as the location of the qpOASES library
++if(NOT qpOASES_LIBRARY)
++  find_library(qpOASES_LIBRARY_RELEASE NAMES qpOASES)
++  find_library(qpOASES_LIBRARY_DEBUG NAMES qpOASESd)
++
++  include(${CMAKE_CURRENT_LIST_DIR}/SelectLibraryConfigurations.cmake)
++  select_library_configurations(qpOASES)
++endif()
++
++unset(qpOASES_NAMES)
++unset(qpOASES_NAMES_DEBUG)
++
++mark_as_advanced(qpOASES_INCLUDE_DIR)
++
++include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
++FIND_PACKAGE_HANDLE_STANDARD_ARGS(qpOASES REQUIRED_VARS qpOASES_LIBRARY qpOASES_INCLUDE_DIR
++                                          HANDLE_COMPONENTS)
++
++if(qpOASES_FOUND)
++    if(NOT TARGET qpOASES::qpOASES)
++      add_library(qpOASES::qpOASES UNKNOWN IMPORTED)
++      set_target_properties(qpOASES::qpOASES PROPERTIES
++        INTERFACE_INCLUDE_DIRECTORIES "${qpOASES_INCLUDE_DIR}")
++
++      if(qpOASES_LIBRARY_RELEASE)
++        set_property(TARGET qpOASES::qpOASES APPEND PROPERTY
++          IMPORTED_CONFIGURATIONS RELEASE)
++        set_target_properties(qpOASES::qpOASES PROPERTIES
++          IMPORTED_LOCATION_RELEASE "${qpOASES_LIBRARY_RELEASE}")
++      endif()
++
++      if(qpOASES_LIBRARY_DEBUG)
++        set_property(TARGET qpOASES::qpOASES APPEND PROPERTY
++          IMPORTED_CONFIGURATIONS DEBUG)
++        set_target_properties(qpOASES::qpOASES PROPERTIES
++          IMPORTED_LOCATION_DEBUG "${qpOASES_LIBRARY_DEBUG}")
++      endif()
++
++      if(NOT qpOASES_LIBRARY_RELEASE AND NOT qpOASES_LIBRARY_DEBUG)
++        set_property(TARGET qpOASES::qpOASES APPEND PROPERTY
++          IMPORTED_LOCATION "${qpOASES_LIBRARY}")
++      endif()
++    endif()
++endif()
