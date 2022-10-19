@@ -1,3 +1,12 @@
+From 0f023c2d8a065643370c0be16aeb9959d767b30d Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Wed, 19 Oct 2022 14:53:25 +0200
+Subject: [PATCH 1/2] Add casadi_ prefix to qpOASES namespace
+
+---
+ external_packages/qpOASES/include/qpOASES/Types.hpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
 diff --git a/external_packages/qpOASES/include/qpOASES/Types.hpp b/external_packages/qpOASES/include/qpOASES/Types.hpp
 index e9d06439b3..a309e25927 100644
 --- a/external_packages/qpOASES/include/qpOASES/Types.hpp
@@ -21,3 +30,27 @@ index e9d06439b3..a309e25927 100644
 +    #define REFER_NAMESPACE_QPOASES  casadi_qpOASES::
  
  #endif
+ 
+
+From 53b86ad53195931432bd1ebd4ee66e8d26b025cc Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Wed, 19 Oct 2022 15:20:37 +0200
+Subject: [PATCH 2/2] Add alias of casadi_qpOASES to qpOASES
+
+---
+ casadi/interfaces/qpoases/qpoases_interface.hpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/casadi/interfaces/qpoases/qpoases_interface.hpp b/casadi/interfaces/qpoases/qpoases_interface.hpp
+index 7aea61573f..4023306cd4 100644
+--- a/casadi/interfaces/qpoases/qpoases_interface.hpp
++++ b/casadi/interfaces/qpoases/qpoases_interface.hpp
+@@ -31,6 +31,8 @@
+ #include <casadi/interfaces/qpoases/casadi_conic_qpoases_export.h>
+ #include <qpOASES.hpp>
+ 
++namespace qpOASES = casadi_qpOASES; 
++
+ /** \defgroup plugin_Conic_qpoases Title
+     \par
+ 
