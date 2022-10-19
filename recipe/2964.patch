@@ -71,7 +71,7 @@ index 0000000000..ab2e17df3d
 +#]=======================================================================]
 +
 +# Try each search configuration.
-+find_path(qpOASES_INCLUDE_DIR NAMES qpOASES.h PATH_SUFFIXES include)
++find_path(qpOASES_INCLUDE_DIR NAMES qpOASES.hpp)
 +
 +# Allow qpOASES_LIBRARY to be set manually, as the location of the qpOASES library
 +if(NOT qpOASES_LIBRARY)
