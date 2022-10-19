@@ -41,6 +41,7 @@ requirements:
     - numpy
     - libosqp
     - ipopt
+    - qpoases
   run:
     - python
     - {{ pin_compatible('numpy') }}
