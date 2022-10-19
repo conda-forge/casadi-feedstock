@@ -12,9 +12,10 @@ source:
   patches:
     - 2671.patch
     - 2878.patch
+    - 2965.patch
 
 build:
-  number: 14
+  number: 15
   rpaths:
     - lib/
     - lib/{{ name }}/
