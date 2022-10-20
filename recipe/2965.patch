@@ -1,0 +1,50 @@
+From 5cb7ec6a0a51eba8fae281f60f4c50d736351bf6 Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Wed, 19 Oct 2022 14:53:25 +0200
+Subject: [PATCH] Add casadi_ prefix to qpOASES namespace
+
+---
+ casadi/interfaces/qpoases/qpoases_interface.hpp     | 3 +++
+ external_packages/qpOASES/include/qpOASES/Types.hpp | 6 +++---
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/casadi/interfaces/qpoases/qpoases_interface.hpp b/casadi/interfaces/qpoases/qpoases_interface.hpp
+index 964db15c89..39b4f065c0 100644
+--- a/casadi/interfaces/qpoases/qpoases_interface.hpp
++++ b/casadi/interfaces/qpoases/qpoases_interface.hpp
+@@ -31,7 +31,10 @@
+ #include <casadi/interfaces/qpoases/casadi_conic_qpoases_export.h>
+ #include <qpOASES.hpp>
+ 
++namespace qpOASES = casadi_qpOASES; 
++
+ /** \defgroup plugin_Conic_qpoases
++ c2cb40a7c (Add casadi_ prefix to qpOASES namespace)
+ Interface to QPOases Solver for quadratic programming
+ 
+ */
+diff --git a/external_packages/qpOASES/include/qpOASES/Types.hpp b/external_packages/qpOASES/include/qpOASES/Types.hpp
+index e9d06439b3..a309e25927 100644
+--- a/external_packages/qpOASES/include/qpOASES/Types.hpp
++++ b/external_packages/qpOASES/include/qpOASES/Types.hpp
+@@ -104,16 +104,16 @@
+ #else
+ 
+     /** Macro for switching on/off the beginning of the qpOASES namespace definition. */
+-    #define BEGIN_NAMESPACE_QPOASES  namespace qpOASES {
++    #define BEGIN_NAMESPACE_QPOASES  namespace casadi_qpOASES {
+ 
+     /** Macro for switching on/off the end of the qpOASES namespace definition. */
+     #define END_NAMESPACE_QPOASES    }
+ 
+     /** Macro for switching on/off the use of the qpOASES namespace. */
+-    #define USING_NAMESPACE_QPOASES  using namespace qpOASES;
++    #define USING_NAMESPACE_QPOASES  using namespace casadi_qpOASES;
+ 
+     /** Macro for switching on/off references to the qpOASES namespace. */
+-    #define REFER_NAMESPACE_QPOASES  qpOASES::
++    #define REFER_NAMESPACE_QPOASES  casadi_qpOASES::
+ 
+ #endif
+ 
+
