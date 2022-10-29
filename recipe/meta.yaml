@@ -15,7 +15,7 @@ source:
     - 2965.patch
 
 build:
-  number: 15
+  number: 16
   rpaths:
     - lib/
     - lib/{{ name }}/
