@@ -25,7 +25,7 @@ index 0f63ed9419..77bb70409f 100644
 +mark_as_advanced(CASADI_PYTHON_PIP_METADATA_INSTALLER)
 +if (CASADI_PYTHON_PIP_METADATA_INSTALL)
 +  if (WIN32)
-+    set(NEW_LINE "\n\r")
++    set(NEW_LINE "\n")
 +  else()
 +    set(NEW_LINE "\n")
 +  endif()
