@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 3b26e73ceb48cd9d713e3727e4038afa0e93471f014f8aaccdd77da382e2249a
+  sha256: 87ea8c25025b0a479d3fcd20d1851197e699b6440cc8fd5e8c02a7e79f8cd19c
   patches:
     - 2906.patch
     - 2965.patch
