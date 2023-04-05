@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.5.5" %}
+{% set version = "3.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -15,7 +15,7 @@ source:
     - 2965.patch
 
 build:
-  number: 18
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -40,6 +40,7 @@ requirements:
     - python
     - numpy
     - libosqp
+    - proxsuite
     - ipopt
   run:
     - python
