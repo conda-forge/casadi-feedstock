@@ -12,6 +12,8 @@ source:
   patches:
     - 2906.patch
     - 2965.patch
+    - 3077.patch
+    - 3078.patch
     - externalproxqp.patch
 
 build:
@@ -41,7 +43,7 @@ requirements:
     - numpy
     - libosqp
     - eigen
-    - proxsuite
+    - tinyxml2
     - ipopt
   run:
     - python
