@@ -40,6 +40,7 @@ requirements:
     - python
     - numpy
     - libosqp
+    - eigen
     - proxsuite
     - ipopt
   run:
