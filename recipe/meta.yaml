@@ -35,14 +35,14 @@ requirements:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - swig
+    - clang # [win]
   host:
     - libblas
     - libcblas
     - python
     - numpy
     - libosqp
-    - eigen
+    - proxsuite
     - tinyxml2
     - ipopt
   run:
