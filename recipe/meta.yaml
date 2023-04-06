@@ -12,6 +12,7 @@ source:
   patches:
     - 2906.patch
     - 2965.patch
+    - externalproxqp.patch
 
 build:
   number: 0
