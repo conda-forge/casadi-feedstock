@@ -35,7 +35,7 @@ requirements:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - clang # [win]
+    - clang  # [win]
   host:
     - libblas
     - libcblas
