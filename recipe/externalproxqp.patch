@@ -6,7 +6,7 @@ index 67696e5823..54bb09bd95 100644
        get_property(PACKAGES_NOT_FOUND_BACKUP GLOBAL PROPERTY PACKAGES_NOT_FOUND)
        get_property(PACKAGES_FOUND_BACKUP GLOBAL PROPERTY PACKAGES_FOUND)
        find_package(${PKG})
-+      if(PKG EQUAL "PROXQP")
++      if(PKG STREQUAL "PROXQP")
 +        find_package(proxsuite)
 +	      set(PROXQP_FOUND ${proxsuite_FOUND})
 +      else()
