@@ -7,7 +7,7 @@ package:
 
 source:
   fn: {{ version }}.tar.gz
-  url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
+  url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-{{ version }}.tar.gz
   sha256: 87ea8c25025b0a479d3fcd20d1851197e699b6440cc8fd5e8c02a7e79f8cd19c
   patches:
     - 2906.patch
