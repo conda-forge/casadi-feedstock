@@ -3,6 +3,11 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig;
 mkdir build
 cd build
 
+# This is required to use proxsuite with Visual Studio 2019
+# As soon as we swich to VS2022, we can drop this
+set "CC=clang-cl.exe"
+set "CXX=clang-cl.exe"
+
 cmake ../^
     -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
