@@ -34,6 +34,7 @@ requirements:
     - ninja
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - swig
     - {{ compiler('fortran') }}  # [not win]
     - clang  # [win]
   host:
