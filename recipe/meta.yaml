@@ -32,9 +32,9 @@ requirements:
     - pkg-config
     - cmake
     - ninja
-    - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}  # [not win]
     - clang  # [win]
   host:
     - libblas
