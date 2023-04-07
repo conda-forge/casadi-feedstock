@@ -1,21 +1,23 @@
 {% set name = "casadi" %}
-{% set version = "3.5.5" %}
+{% set version = "3.6.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ version }}.tar.gz
-  url: https://github.com/casadi/casadi/archive/{{ version }}.tar.gz
-  sha256: 3b26e73ceb48cd9d713e3727e4038afa0e93471f014f8aaccdd77da382e2249a
+  fn: {{ version }}.zip
+  url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
+  sha256: 5529bce5cccdd4115901aa3ecfdf0dc6ed57be2cb9a1b786f7b25404aa865295
   patches:
-    - 2671.patch
-    - 2878.patch
+    - 2906.patch
     - 2965.patch
+    - 3077.patch
+    - 3078.patch
+    - 3080.patch
 
 build:
-  number: 18
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -30,16 +32,18 @@ requirements:
     - pkg-config
     - cmake
     - ninja
-    - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - swig
+    - {{ compiler('fortran') }}  # [not win]
+    - clang  # [win]
   host:
     - libblas
     - libcblas
     - python
     - numpy
     - libosqp
+    - proxsuite
+    - tinyxml2
     - ipopt
   run:
     - python

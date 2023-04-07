@@ -3,6 +3,11 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig;
 mkdir build
 cd build
 
+# This is required to use proxsuite with Visual Studio 2019
+# As soon as we swich to VS2022, we can drop this
+set "CC=clang-cl.exe"
+set "CXX=clang-cl.exe"
+
 cmake ../^
     -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
@@ -18,10 +23,25 @@ cmake ../^
     -DWITH_LAPACK=ON^
     -DWITH_IPOPT=ON^
     -DWITH_THREAD=ON^
-    -DWITH_JSON=ON^
+    -DWITH_JSON=OFF^
     -DWITH_OSQP=ON^
+    -DWITH_BUILD_OSQP=OFF^
     -DWITH_QPOASES=ON^
-    -DUSE_SYSTEM_WISE_OSQP=ON^
+    -DWITH_PROXQP=ON^
+    -DWITH_BUILD_PROXQP=OFF^
+    -DWITH_TINYXML=ON^
+    -DWITH_BUILD_TINYXML=OFF^
+    -DSWIG_IMPORT=ON^
+    -DWITH_KNITRO=OFF^
+    -DWITH_MOCKUP_KNITRO=OFF^
+    -DWITH_CPLEX=OFF^
+    -DWITH_MOCKUP_CPLEX=OFF^
+    -DWITH_GUROBI=OFF^
+    -DWITH_MOCKUP_GUROBI=OFF^
+    -DWITH_HSL=OFF^
+    -DWITH_MOCKUP_HSL=OFF^
+    -DWITH_WORHP=OFF^
+    -DWITH_MOCKUP_WORHP=OFF^
     -DPYTHON_PREFIX=%SP_DIR%^
     -DWITH_COPYSIGN_UNDEF=ON^
     -DCASADI_PYTHON_PIP_METADATA_INSTALL=ON^
