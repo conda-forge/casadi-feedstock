@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 ipopt:
-- 3.14.11
+- 3.14.12
 libblas:
 - 3.9 *netlib
 libcblas:
