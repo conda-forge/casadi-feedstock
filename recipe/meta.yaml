@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ version }}.zip
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
-  sha256: 60ffa0e2d157b7fbb0c5823f255d66c3cd6ee77120271572989582e19bf0a4ba
+  sha256: f34b01fb922a8d4ad2b3433366cbf99869a5fe71c9f55d3bb1b62035fd4e3e3f
   patches:
     - 2965.patch
 
