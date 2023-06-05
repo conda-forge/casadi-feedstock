@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.6.2" %}
+{% set version = "3.6.3" %}
 
 package:
   name: {{ name|lower }}
@@ -11,11 +11,10 @@ source:
   sha256: 60ffa0e2d157b7fbb0c5823f255d66c3cd6ee77120271572989582e19bf0a4ba
   patches:
     - 2965.patch
-    - 3077.patch
 
 
 build:
-  number: 2
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
