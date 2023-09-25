@@ -56,7 +56,7 @@ test:
   commands: 
     - python ipopt_nl.py
     # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93
-    - OMP_CANCELLATION=true OMP_PROC_BIND=true ipopt_nl.py spral  # [linux]
+    - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]
     - test $(pip list | grep casadi | tr -s " " | grep $PKG_VERSION | wc -l) -eq 1  # [unix]
   requires:
     - pip
