@@ -1,5 +1,6 @@
 from casadi import *
 import numpy as np
+import sys
 
 # Declare variables
 x = SX.sym("x",2)
@@ -13,7 +14,10 @@ nlp = {'x':x, 'f':f, 'g':g}
 MySolver = "ipopt"
 
 # Solver options
-opts = {}
+if (len(sys.argv) >= 2):
+    opts = { "ipopt.linear_solver" : sys.argv[1] }
+else:
+    opts = {}
 
 # Allocate a solver
 solver = nlpsol("solver", MySolver, nlp, opts)
