@@ -11,10 +11,11 @@ source:
   sha256: f34b01fb922a8d4ad2b3433366cbf99869a5fe71c9f55d3bb1b62035fd4e3e3f
   patches:
     - 2965.patch
+    - rtld_deepbind_null_environ_workaround.patch
 
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -54,6 +55,8 @@ test:
     - ipopt_nl.py
   commands: 
     - python ipopt_nl.py
+    # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93
+    - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]
     - test $(pip list | grep casadi | tr -s " " | grep $PKG_VERSION | wc -l) -eq 1  # [unix]
   requires:
     - pip
