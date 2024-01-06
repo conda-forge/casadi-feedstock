@@ -37,7 +37,7 @@ python:
 target_platform:
 - osx-64
 tinyxml2:
-- '9'
+- '10'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
