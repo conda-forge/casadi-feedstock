@@ -15,7 +15,7 @@ source:
 
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -31,6 +31,7 @@ requirements:
     - cmake
     - ninja
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
     - clang  # [win]
