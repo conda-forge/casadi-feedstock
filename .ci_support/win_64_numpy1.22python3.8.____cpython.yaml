@@ -2,8 +2,6 @@ c_compiler:
 - vs2019
 c_stdlib:
 - vs
-c_stdlib_version:
-- '2019'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 ipopt:
-- 3.14.15
+- 3.14.16
 libblas:
 - 3.9 *netlib
 libcblas:
