@@ -15,7 +15,7 @@ source:
 
 
 build:
-  number: 2
+  number: 3
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -46,7 +46,6 @@ requirements:
     - ipopt
   run:
     - python
-    - {{ pin_compatible('numpy') }}
 
 
 test:
