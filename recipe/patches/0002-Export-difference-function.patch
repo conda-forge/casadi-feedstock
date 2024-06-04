@@ -1,0 +1,25 @@
+From a21149896d34b5e02e71ab279bf3909ca569efac Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Thu, 30 May 2024 15:13:26 +0200
+Subject: [PATCH 2/2] Export difference function
+
+---
+ casadi/core/mx.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/casadi/core/mx.hpp b/casadi/core/mx.hpp
+index 730c3e032..471a0b5aa 100644
+--- a/casadi/core/mx.hpp
++++ b/casadi/core/mx.hpp
+@@ -841,7 +841,7 @@ namespace casadi {
+ #endif // SWIG
+ 
+     /** \bried Return all elements of a that do not occur in b, preserving order */
+-    friend std::vector<MX> difference(const std::vector<MX>& a, const std::vector<MX>& b);
++    CASADI_EXPORT friend std::vector<MX> difference(const std::vector<MX>& a, const std::vector<MX>& b);
+ 
+     /** \brief returns itself, but with an assertion attached
+     *
+-- 
+2.34.1
+

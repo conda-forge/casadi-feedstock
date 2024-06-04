@@ -1,0 +1,40 @@
+From 3c7b1a5858d0ad5baee3bcac8d567a1736654647 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Fri, 31 May 2024 11:16:08 +0200
+Subject: [PATCH] Bypass CMake + crosscompiling + conda-forge CI issue
+
+---
+ swig/python/CMakeLists.txt | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/swig/python/CMakeLists.txt b/swig/python/CMakeLists.txt
+index 52c54abf8..1b71bf790 100644
+--- a/swig/python/CMakeLists.txt
++++ b/swig/python/CMakeLists.txt
+@@ -27,7 +27,22 @@ if(APPLE)
+   endif()
+ endif()
+ 
+-find_package(Python COMPONENTS Development REQUIRED)
++# This hack avoid some issues with conda-forge crossbuilding
++# and a bug in find_package(Python) scripts.
++# When calling find_package(Python COMPONENTS Interpreter Development)
++# with CMAKE_CROSSCOMPILING=ON the Python_SOABI variable
++# is never set (see https://gitlab.kitware.com/cmake/cmake/-/issues/25145).
++# The right strategy is to find Interpreter and Development components separately.
++# Unfortunately, this strategy rely on python3-config script, but the Finder
++# doesn't find the good one (host instead of target) and python3-config is not installed
++# when working with PyPy.
++# To avoid this issue, we deactivate the CMAKE_CROSSCOMPILING flag before calling find_package(Python).
++# Python_SOABI is then founded with the hacked conda-forge Python interpreter instead of
++# python3-config script.
++set(_CMAKE_CROSSCOMPILING ${CMAKE_CROSSCOMPILING})
++set(CMAKE_CROSSCOMPILING 0)
++find_package(Python COMPONENTS Interpreter Development REQUIRED)
++set(CMAKE_CROSSCOMPILING ${_CMAKE_CROSSCOMPILING})
+ 
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+-- 
+2.34.1
+

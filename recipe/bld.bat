@@ -3,10 +3,19 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig;
 mkdir build
 cd build
 
-# This is required to use proxsuite with Visual Studio 2019
-# As soon as we swich to VS2022, we can drop this
+REM This is required to use proxsuite with Visual Studio 2019
+REM As soon as we swich to VS2022, we can drop this
 set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
+
+set SWIG_IMPORT=ON
+set SWIG_EXPORT=OFF
+if exist %PREFIX%\pypy.exe (
+  set SWIG_IMPORT=OFF
+  set SWIG_EXPORT=ON
+)
+echo "SWIG_IMPORT=%SWIG_IMPORT%"
+echo "SWIG_EXPORT=%SWIG_EXPORT%"
 
 cmake ../^
     -GNinja^
@@ -31,7 +40,6 @@ cmake ../^
     -DWITH_BUILD_PROXQP=OFF^
     -DWITH_TINYXML=ON^
     -DWITH_BUILD_TINYXML=OFF^
-    -DSWIG_IMPORT=ON^
     -DWITH_KNITRO=OFF^
     -DWITH_MOCKUP_KNITRO=OFF^
     -DWITH_CPLEX=OFF^
@@ -43,8 +51,11 @@ cmake ../^
     -DWITH_WORHP=OFF^
     -DWITH_MOCKUP_WORHP=OFF^
     -DPYTHON_PREFIX=%SP_DIR%^
+    -DPython_EXECUTABLE=%PYTHON%^
     -DWITH_COPYSIGN_UNDEF=ON^
     -DCASADI_PYTHON_PIP_METADATA_INSTALL=ON^
-    -DCASADI_PYTHON_PIP_METADATA_INSTALLER:STRING="conda"
+    -DCASADI_PYTHON_PIP_METADATA_INSTALLER:STRING="conda"^
+    -DSWIG_IMPORT=%SWIG_IMPORT%^
+    -DSWIG_EXPORT=%SWIG_EXPORT%
 
 ninja install
