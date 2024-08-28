@@ -11,7 +11,7 @@ c_stdlib:
 c_stdlib_version:
 - '11.0'
 channel_sources:
-- conda-forge/label/numpy_rc,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -21,7 +21,7 @@ cxx_compiler_version:
 fortran_compiler:
 - gfortran
 fortran_compiler_version:
-- '12'
+- '13'
 ipopt:
 - 3.14.16
 libblas:
@@ -39,7 +39,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.12.* *_cpython
 target_platform:
 - osx-arm64
 tinyxml2:
