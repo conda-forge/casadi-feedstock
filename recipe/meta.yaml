@@ -14,6 +14,7 @@ source:
     - patches/rtld_deepbind_null_environ_workaround.patch
     - patches/0001-Modernize-Python-find_package.patch
     - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
+    - patches/externalfatrop.cmake
 
 
 build:
@@ -47,6 +48,7 @@ requirements:
     - proxsuite
     - tinyxml2
     - ipopt
+    - fatrop  # [linux]
   run:
     - python
 
