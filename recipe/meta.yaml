@@ -13,7 +13,6 @@ source:
     - patches/2965.patch
     - patches/rtld_deepbind_null_environ_workaround.patch
     - patches/0001-Modernize-Python-find_package.patch
-    - patches/0002-Export-difference-function.patch
     - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
 
 
