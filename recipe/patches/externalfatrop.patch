@@ -1,29 +1,36 @@
-From bb5e755e48fa566803fa868cfcf932ceac0ed99c Mon Sep 17 00:00:00 2001
+From 4d4edb21521817fc980da5e570a607ad2f15aaa2 Mon Sep 17 00:00:00 2001
 From: Silvio Traversaro <silvio@traversaro.it>
 Date: Mon, 2 Sep 2024 11:50:00 +0200
 Subject: [PATCH] Fix build with WITH_FATROP=ON and WITH_BUILD_FATROP=OFF
 
 ---
- CMakeLists.txt                          | 3 +++
- casadi/interfaces/fatrop/CMakeLists.txt | 4 ++--
- cmake/FindFATROP.cmake                  | 6 ++++++
- 3 files changed, 11 insertions(+), 2 deletions(-)
+ CMakeLists.txt                                      | 7 +++++--
+ casadi/interfaces/fatrop/CMakeLists.txt             | 4 ++--
+ casadi/interfaces/fatrop/fatrop_conic_interface.hpp | 6 +++---
+ casadi/interfaces/fatrop/fatrop_interface.hpp       | 6 +++---
+ cmake/FindFATROP.cmake                              | 6 ++++++
+ 5 files changed, 19 insertions(+), 10 deletions(-)
  create mode 100644 cmake/FindFATROP.cmake
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 701e9f4442..0cc500869e 100644
+index 701e9f4442..c1a49e4dbe 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -1194,6 +1194,9 @@ if(WITH_FATROP)
+@@ -1194,9 +1194,12 @@ if(WITH_FATROP)
      add_library(fatrop SHARED IMPORTED)
      add_dependencies(fatrop fatrop-external)
      target_link_libraries(fatrop INTERFACE blasfeo)
+-    file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/include/fatrop")
 +    # This is similar to ALIAS but works fine on imported targets with CMake 3.10
 +    add_library(fatrop::fatrop INTERFACE IMPORTED)
 +    set_target_properties(fatrop::fatrop PROPERTIES INTERFACE_LINK_LIBRARIES fatrop)
-     file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/include/fatrop")
++    file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/include")
      set_target_properties(fatrop PROPERTIES
-       INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/external_projects/include/fatrop"
+-      INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/external_projects/include/fatrop"
++      INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/external_projects/include"
+       IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/external_projects/${SHARED_LIBRARY_RELDIR}/${CMAKE_SHARED_LIBRARY_PREFIX}fatrop${CMAKE_SHARED_LIBRARY_SUFFIX}"
+       IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}fatrop${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+     )
 diff --git a/casadi/interfaces/fatrop/CMakeLists.txt b/casadi/interfaces/fatrop/CMakeLists.txt
 index 771c9f1616..07541accaf 100644
 --- a/casadi/interfaces/fatrop/CMakeLists.txt
@@ -46,6 +53,40 @@ index 771c9f1616..07541accaf 100644
  
  
  #add_executable(fatrop_test fatrop_test.cpp)
+diff --git a/casadi/interfaces/fatrop/fatrop_conic_interface.hpp b/casadi/interfaces/fatrop/fatrop_conic_interface.hpp
+index 8835c5b2b8..b5a1776e48 100644
+--- a/casadi/interfaces/fatrop/fatrop_conic_interface.hpp
++++ b/casadi/interfaces/fatrop/fatrop_conic_interface.hpp
+@@ -61,9 +61,9 @@ namespace casadi {
+   #include "fatrop_conic_runtime.hpp"
+ }
+ 
+-#include <ocp/OCPAbstract.hpp>
+-#include <ocp/StageOCPApplication.hpp>
+-#include <ocp/OCPCInterface.h>
++#include <fatrop/ocp/OCPAbstract.hpp>
++#include <fatrop/ocp/StageOCPApplication.hpp>
++#include <fatrop/ocp/OCPCInterface.h>
+ 
+ /** \pluginsection{Conic,fatrop} */
+ 
+diff --git a/casadi/interfaces/fatrop/fatrop_interface.hpp b/casadi/interfaces/fatrop/fatrop_interface.hpp
+index 1111909bb2..05de51d86b 100644
+--- a/casadi/interfaces/fatrop/fatrop_interface.hpp
++++ b/casadi/interfaces/fatrop/fatrop_interface.hpp
+@@ -29,9 +29,9 @@
+ #include <casadi/interfaces/fatrop/casadi_nlpsol_fatrop_export.h>
+ #include "casadi/core/nlpsol_impl.hpp"
+ #include "casadi/core/timing.hpp"
+-#include <ocp/OCPAbstract.hpp>
+-#include <ocp/StageOCPApplication.hpp>
+-#include <ocp/OCPCInterface.h>
++#include <fatrop/ocp/OCPAbstract.hpp>
++#include <fatrop/ocp/StageOCPApplication.hpp>
++#include <fatrop/ocp/OCPCInterface.h>
+ 
+ namespace casadi {
+   #include "fatrop_runtime.hpp"
 diff --git a/cmake/FindFATROP.cmake b/cmake/FindFATROP.cmake
 new file mode 100644
 index 0000000000..0e4a662f85
