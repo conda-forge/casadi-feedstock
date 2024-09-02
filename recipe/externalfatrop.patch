@@ -1,0 +1,60 @@
+From bb5e755e48fa566803fa868cfcf932ceac0ed99c Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Mon, 2 Sep 2024 11:50:00 +0200
+Subject: [PATCH] Fix build with WITH_FATROP=ON and WITH_BUILD_FATROP=OFF
+
+---
+ CMakeLists.txt                          | 3 +++
+ casadi/interfaces/fatrop/CMakeLists.txt | 4 ++--
+ cmake/FindFATROP.cmake                  | 6 ++++++
+ 3 files changed, 11 insertions(+), 2 deletions(-)
+ create mode 100644 cmake/FindFATROP.cmake
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 701e9f4442..0cc500869e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1194,6 +1194,9 @@ if(WITH_FATROP)
+     add_library(fatrop SHARED IMPORTED)
+     add_dependencies(fatrop fatrop-external)
+     target_link_libraries(fatrop INTERFACE blasfeo)
++    # This is similar to ALIAS but works fine on imported targets with CMake 3.10
++    add_library(fatrop::fatrop INTERFACE IMPORTED)
++    set_target_properties(fatrop::fatrop PROPERTIES INTERFACE_LINK_LIBRARIES fatrop)
+     file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/include/fatrop")
+     set_target_properties(fatrop PROPERTIES
+       INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/external_projects/include/fatrop"
+diff --git a/casadi/interfaces/fatrop/CMakeLists.txt b/casadi/interfaces/fatrop/CMakeLists.txt
+index 771c9f1616..07541accaf 100644
+--- a/casadi/interfaces/fatrop/CMakeLists.txt
++++ b/casadi/interfaces/fatrop/CMakeLists.txt
+@@ -7,7 +7,7 @@ casadi_plugin(Conic fatrop
+   "${CMAKE_CURRENT_BINARY_DIR}/fatrop_conic_runtime_str.h"
+   )
+ 
+-casadi_plugin_link_libraries(Conic fatrop fatrop)
++casadi_plugin_link_libraries(Conic fatrop fatrop::fatrop)
+ 
+ casadi_plugin(Nlpsol fatrop
+   fatrop_interface.hpp
+@@ -16,7 +16,7 @@ casadi_plugin(Nlpsol fatrop
+   "${CMAKE_CURRENT_BINARY_DIR}/fatrop_runtime_str.h"
+   )
+ 
+-casadi_plugin_link_libraries(Nlpsol fatrop fatrop)
++casadi_plugin_link_libraries(Nlpsol fatrop fatrop::fatrop)
+ 
+ 
+ #add_executable(fatrop_test fatrop_test.cpp)
+diff --git a/cmake/FindFATROP.cmake b/cmake/FindFATROP.cmake
+new file mode 100644
+index 0000000000..0e4a662f85
+--- /dev/null
++++ b/cmake/FindFATROP.cmake
+@@ -0,0 +1,6 @@
++# Search for fatrop via find_package(fatrop)
++include(CMakeFindDependencyMacro)
++find_dependency(fatrop NO_MODULE)
++
++include(FindPackageHandleStandardArgs)
++find_package_handle_standard_args(FATROP DEFAULT_MSG fatrop_FOUND)
