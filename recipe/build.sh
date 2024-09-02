@@ -4,6 +4,10 @@ pushd build
 if [[ "${target_platform}" == osx-* ]]; then
     # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
     CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+    # fatrop is not supported on macos for now, see https://github.com/conda-forge/blasfeo-feedstock/issues/4
+    WITH_FATROP=OFF
+else
+    WITH_FATROP=ON
 fi
 
 # With PyPy we must regenerate the swig Python binding due to a weird issue.
@@ -48,6 +52,8 @@ cmake ${CMAKE_ARGS} $SRC_DIR \
   -DWITH_MOCKUP_HSL=OFF \
   -DWITH_WORHP=OFF \
   -DWITH_MOCKUP_WORHP=OFF \
+  -DWITH_FATROP=$WITH_FATROP \
+  -DWITH_BUILD_FATROP=OFF \
   -DPYTHON_PREFIX=${SP_DIR} \
   -DPython_EXECUTABLE=${PYTHON} \
   -DPython_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR} \
@@ -55,5 +61,5 @@ cmake ${CMAKE_ARGS} $SRC_DIR \
   -DCASADI_PYTHON_PIP_METADATA_INSTALL=ON \
   -DCASADI_PYTHON_PIP_METADATA_INSTALLER:STRING="conda" \
   ${SWIG_IMPORT_EXPORT}
-  
+
 ninja install

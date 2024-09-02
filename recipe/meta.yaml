@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.6.5" %}
+{% set version = "3.6.6" %}
 
 package:
   name: {{ name|lower }}
@@ -8,17 +8,17 @@ package:
 source:
   fn: {{ version }}.zip
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
-  sha256: 358457f533de4be29da52817ac46392ca101d1dac0c587e40f893e46dc5c2b12
+  sha256: c8583e19a2a2acc633082f46b0d2f6db29f4e1816fa16930897b2b86e68f048c
   patches:
     - patches/2965.patch
     - patches/rtld_deepbind_null_environ_workaround.patch
     - patches/0001-Modernize-Python-find_package.patch
-    - patches/0002-Export-difference-function.patch
     - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
+    - patches/externalfatrop.patch
 
 
 build:
-  number: 4
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -48,6 +48,7 @@ requirements:
     - proxsuite
     - tinyxml2
     - ipopt
+    - libfatrop  # [linux]
   run:
     - python
 
@@ -57,7 +58,7 @@ test:
     - casadi
   files:
     - ipopt_nl.py
-  commands: 
+  commands:
     - python ipopt_nl.py
     # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93
     - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]
