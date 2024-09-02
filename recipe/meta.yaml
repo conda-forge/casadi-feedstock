@@ -48,7 +48,7 @@ requirements:
     - proxsuite
     - tinyxml2
     - ipopt
-    - fatrop  # [linux]
+    - libfatrop  # [linux]
   run:
     - python
 
