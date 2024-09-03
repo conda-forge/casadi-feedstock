@@ -74,6 +74,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - agriyakhetarpal 
     - traversaro
     - pstjohn
     - pariterre
