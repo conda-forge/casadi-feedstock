@@ -3,7 +3,7 @@ c_compiler:
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge
+- conda-forge/label/python_rc,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -17,13 +17,13 @@ libcblas:
 libosqp:
 - 0.6.3
 numpy:
-- '2.0'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.11.* *_cpython
+- 3.13.* *_cp313
 target_platform:
 - win-64
 tinyxml2:
@@ -31,3 +31,4 @@ tinyxml2:
 zip_keys:
 - - python
   - numpy
+  - channel_sources
