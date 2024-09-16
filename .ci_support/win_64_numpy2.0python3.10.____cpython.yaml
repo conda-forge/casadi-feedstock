@@ -31,3 +31,4 @@ tinyxml2:
 zip_keys:
 - - python
   - numpy
+  - channel_sources

@@ -9,7 +9,7 @@ c_stdlib_version:
 cdt_name:
 - cos7
 channel_sources:
-- conda-forge
+- conda-forge/label/python_rc,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -31,15 +31,15 @@ libcblas:
 libosqp:
 - 0.6.3
 numpy:
-- '2.0'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.13.* *_cp313
 target_platform:
-- linux-64
+- linux-ppc64le
 tinyxml2:
 - '10'
 zip_keys:
@@ -50,3 +50,4 @@ zip_keys:
   - cdt_name
 - - python
   - numpy
+  - channel_sources
