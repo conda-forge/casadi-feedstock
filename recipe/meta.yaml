@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.6.6" %}
+{% set version = "3.6.7" %}
 
 package:
   name: {{ name|lower }}
@@ -8,17 +8,16 @@ package:
 source:
   fn: {{ version }}.zip
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
-  sha256: c8583e19a2a2acc633082f46b0d2f6db29f4e1816fa16930897b2b86e68f048c
+  sha256: 63d2c752d819f1790636f2015990c83bade6dd425af91b4239518312f6f6a052
   patches:
     - patches/2965.patch
     - patches/rtld_deepbind_null_environ_workaround.patch
     - patches/0001-Modernize-Python-find_package.patch
     - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
-    - patches/externalfatrop.patch
 
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -74,7 +73,7 @@ about:
 
 extra:
   recipe-maintainers:
-    - agriyakhetarpal 
+    - agriyakhetarpal
     - traversaro
     - pstjohn
     - pariterre
