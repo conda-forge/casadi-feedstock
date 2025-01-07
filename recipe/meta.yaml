@@ -17,7 +17,7 @@ source:
 
 
 build:
-  number: 2
+  number: 3
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -49,8 +49,8 @@ requirements:
     - tinyxml2
     - ipopt
     # libblasfeo is included as it is a public dependency of libfatrop
-    - libblasfeo  # [linux]
-    - libfatrop  # [linux]
+    - libblasfeo  # [unix]
+    - libfatrop  # [unix]
   run:
     - python
 
