@@ -17,7 +17,7 @@ source:
 
 
 build:
-  number: 1
+  number: 2
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -41,12 +41,15 @@ requirements:
   host:
     - libblas
     - libcblas
+    - liblapack
     - python
     - numpy
     - libosqp
     - proxsuite
     - tinyxml2
     - ipopt
+    # libblasfeo is included as it is a public dependency of libfatrop
+    - libblasfeo  # [linux]
     - libfatrop  # [linux]
   run:
     - python
