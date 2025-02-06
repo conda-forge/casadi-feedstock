@@ -25,11 +25,11 @@ fortran_compiler_version:
 ipopt:
 - 3.14.17
 libblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 libcblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 liblapack:
-- 3.9 *netlib
+- 3.9.* *netlib
 libosqp:
 - 0.6.3
 numpy:
