@@ -40,14 +40,12 @@ pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
-proxsuite:
-- 0.7.1
 python:
 - 3.13.* *_cp313
 target_platform:
 - osx-arm64
 tinyxml2:
-- '10'
+- '10.0'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version

@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.6.7" %}
+{% set version = "3.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ version }}.zip
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
-  sha256: 63d2c752d819f1790636f2015990c83bade6dd425af91b4239518312f6f6a052
+  sha256: 559a850620094246ec7cd8cfe00d9d9214706687d5b9aba63e68c21afb60a5ed
   patches:
     - patches/2965.patch
     - patches/rtld_deepbind_null_environ_workaround.patch
@@ -17,7 +17,7 @@ source:
 
 
 build:
-  number: 5
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
