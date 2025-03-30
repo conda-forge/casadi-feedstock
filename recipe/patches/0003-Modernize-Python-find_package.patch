@@ -1,7 +1,7 @@
 From d0a1bc3849cd0154a99c826948262cb5aa8e8a40 Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
 Date: Wed, 29 May 2024 16:32:35 +0200
-Subject: [PATCH 03/05] Modernize Python find_package
+Subject: [PATCH 03/04] Modernize Python find_package
 
 * Use find_package(python) instead of deprecated ones
 * Use python_add_library to setup the right soabi suffix

@@ -1,7 +1,7 @@
 From 3c7b1a5858d0ad5baee3bcac8d567a1736654647 Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
 Date: Fri, 31 May 2024 11:16:08 +0200
-Subject: [PATCH 04/05] Bypass CMake + crosscompiling + conda-forge CI issue
+Subject: [PATCH 04/04] Bypass CMake + crosscompiling + conda-forge CI issue
 
 ---
  swig/python/CMakeLists.txt | 17 ++++++++++++++++-

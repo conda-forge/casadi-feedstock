@@ -1,7 +1,7 @@
 From 5e52d394cef668f0f1a29ebbfec44bc13b7ebe65 Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
 Date: Sun, 03 Jun 2024 15:58:41 +0200
-Subject: [PATCH 02/05] Work around RTLD_DEEPBIND null environ
+Subject: [PATCH 02/04] Work around RTLD_DEEPBIND null environ
 
 ---
  casadi/core/casadi_os.cpp | 39 +++++++++++++++++++++++++++++++++++++++

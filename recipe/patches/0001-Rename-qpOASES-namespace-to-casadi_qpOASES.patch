@@ -1,7 +1,7 @@
 From d2e2589f04adaa14cf4908101ae6ac84ad12b02f Mon Sep 17 00:00:00 2001
 From: Silvio Traversaro <silvio@traversaro.it>
 Date: Wed, 19 Oct 2022 14:53:25 +0200
-Subject: [PATCH 01/05] Rename qpOASES namespace to casadi_qpOASES
+Subject: [PATCH 01/04] Rename qpOASES namespace to casadi_qpOASES
 
 ---
  casadi/interfaces/qpoases/qpoases_interface.hpp     | 2 ++
