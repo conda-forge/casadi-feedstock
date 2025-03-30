@@ -65,8 +65,12 @@ test:
     # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93
     - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]
     - test $(pip list | grep casadi | tr -s " " | grep $PKG_VERSION | wc -l) -eq 1  # [unix]
+    - cmake-package-check casadi --targets casadi::casadi
   requires:
     - pip
+    - cmake-package-check
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
 
 about:
   home: http://casadi.org
