@@ -1,0 +1,25 @@
+From a21149896d34b5e02e71ab279bf3909ca569efac Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Thu, 30 May 2024 15:13:26 +0200
+Subject: Export difference function
+
+---
+ casadi/core/mx.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/casadi/core/mx.hpp b/casadi/core/mx.hpp
+index 0137a7894..74a876085 100644
+--- a/casadi/core/mx.hpp
++++ b/casadi/core/mx.hpp
+@@ -908,7 +908,7 @@ namespace casadi {
+     }
+ 
+     /** \bried Return all elements of a that do not occur in b, preserving order */
+-    inline friend std::vector<MX> difference(const std::vector<MX>& a, const std::vector<MX>& b) {
++    CASADI_EXPORT inline friend std::vector<MX> difference(const std::vector<MX>& a, const std::vector<MX>& b) {
+       return MX::difference(a, b);
+     }
+ 
+-- 
+2.39.5 (Apple Git-154)
+
