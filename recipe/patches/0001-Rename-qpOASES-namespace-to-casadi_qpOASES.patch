@@ -1,6 +1,6 @@
 From d2e2589f04adaa14cf4908101ae6ac84ad12b02f Mon Sep 17 00:00:00 2001
-From: Joris Vaillant <joris.vaillant@inria.fr>
-Date: Sun, 03 Jun 2024 15:58:41 +0200
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Wed, 19 Oct 2022 14:53:25 +0200
 Subject: [PATCH 01/05] Rename qpOASES namespace to casadi_qpOASES
 
 ---
