@@ -10,10 +10,11 @@ source:
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
   sha256: 559a850620094246ec7cd8cfe00d9d9214706687d5b9aba63e68c21afb60a5ed
   patches:
-    - patches/2965.patch
-    - patches/rtld_deepbind_null_environ_workaround.patch
-    - patches/0001-Modernize-Python-find_package.patch
-    - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
+    - patches/0001-Rename-qpOASES-namespace-to-casadi_qpOASES.patch
+    - patches/0002-Work-around-RTLD_DEEPBIND-null-environ.patch
+    # - patches/0002-Export-difference-function.patch # currently not applied
+    - patches/0003-Modernize-Python-find_package.patch
+    - patches/0004-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
 
 
 build:
