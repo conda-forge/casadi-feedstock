@@ -17,7 +17,7 @@ source:
 
 
 build:
-  number: 1
+  number: 2
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -36,7 +36,6 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}  # [not win]
     - clang  # [win]
   host:
     - libblas
