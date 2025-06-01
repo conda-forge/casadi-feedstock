@@ -59,3 +59,9 @@ cmake ${CMAKE_ARGS} $SRC_DIR \
   ${SWIG_IMPORT_EXPORT}
 
 ninja install
+
+# Run tests in build step as the test files can't be moved easily
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+  # Run qp-related tests 
+  python $SRC_DIR/test/python/conic.py
+fi

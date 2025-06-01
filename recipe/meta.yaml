@@ -14,10 +14,10 @@ source:
     - patches/0002-Work-around-RTLD_DEEPBIND-null-environ.patch
     - patches/0003-Modernize-Python-find_package.patch
     - patches/0004-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
-
+    - patches/0005-support-osqp1-backport-pr-4105.patch
 
 build:
-  number: 2
+  number: 3
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -57,6 +57,8 @@ requirements:
 test:
   imports:
     - casadi
+    # Regression test for https://github.com/conda-forge/casadi-feedstock/pull/136#issuecomment-2927518441
+    - casadi.tools.structure3
   files:
     - ipopt_nl.py
   commands:
