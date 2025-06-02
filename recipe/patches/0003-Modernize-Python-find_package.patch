@@ -29,7 +29,7 @@ diff --git a/swig/python/CMakeLists.txt b/swig/python/CMakeLists.txt
 index fb17569b0..90b3f00c6 100644
 --- a/swig/python/CMakeLists.txt
 +++ b/swig/python/CMakeLists.txt
-@@ -27,43 +27,7 @@ if(APPLE)
+@@ -27,43 +27,8 @@ if(APPLE)
    endif()
  endif()
  
@@ -71,6 +71,7 @@ index fb17569b0..90b3f00c6 100644
 -  
 -endif()
 +find_package(Python COMPONENTS Development REQUIRED)
++set(PYTHON_VERSION_MAJOR 3)
  
  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
  
