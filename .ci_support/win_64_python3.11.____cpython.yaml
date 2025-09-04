@@ -30,3 +30,6 @@ target_platform:
 - win-64
 tinyxml2:
 - '11.0'
+zip_keys:
+- - python
+  - channel_sources
