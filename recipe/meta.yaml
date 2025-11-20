@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.7.0" %}
+{% set version = "3.7.2" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ version }}.zip
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
-  sha256: 559a850620094246ec7cd8cfe00d9d9214706687d5b9aba63e68c21afb60a5ed
+  sha256: 4b9c9e9020a1f4e394c472aa49f86da573e3e14170d526d45724d539864cf038
   patches:
     - patches/0001-Rename-qpOASES-namespace-to-casadi_qpOASES.patch
     - patches/0002-Work-around-RTLD_DEEPBIND-null-environ.patch
@@ -17,7 +17,7 @@ source:
     - patches/0005-support-osqp1-backport-pr-4105.patch
 
 build:
-  number: 5
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
