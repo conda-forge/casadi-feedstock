@@ -11,7 +11,6 @@ source:
   sha256: 4b9c9e9020a1f4e394c472aa49f86da573e3e14170d526d45724d539864cf038
   patches:
     - patches/0001-Rename-qpOASES-namespace-to-casadi_qpOASES.patch
-    - patches/0002-Work-around-RTLD_DEEPBIND-null-environ.patch
     - patches/0003-Modernize-Python-find_package.patch
     - patches/0004-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
     - patches/0005-support-osqp1-backport-pr-4105.patch
