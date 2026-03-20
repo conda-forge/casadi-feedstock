@@ -37,7 +37,8 @@ requirements:
     - {{ compiler('cxx') }}
     - clang  # [win]
   host:
-    - eigen
+    - setuptools
+    - eigen <5
     - libblas
     - libcblas
     - liblapack
