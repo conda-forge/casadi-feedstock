@@ -16,7 +16,7 @@ source:
     - patches/0005-support-osqp1-backport-pr-4105.patch
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -37,8 +37,7 @@ requirements:
     - {{ compiler('cxx') }}
     - clang  # [win]
   host:
-    - setuptools
-    - eigen <5
+    - eigen
     - libblas
     - libcblas
     - liblapack
@@ -46,6 +45,8 @@ requirements:
     - numpy
     - libosqp
     - proxsuite
+    # We add eigen-abi-devel to respect the case B in https://github.com/conda-forge/eigen-feedstock/blob/main/recipe/README.md for proxsuite
+    - eigen-abi-devel
     - tinyxml2
     - ipopt
     # libblasfeo is included as it is a public dependency of libfatrop
