@@ -16,7 +16,7 @@ source:
     - patches/0005-support-osqp1-backport-pr-4105.patch
 
 build:
-  number: 1
+  number: 2
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -52,6 +52,7 @@ requirements:
     # libblasfeo is included as it is a public dependency of libfatrop
     - libblasfeo  # [unix]
     - libfatrop  # [unix]
+    - mumps-seq
   run:
     - python
 
