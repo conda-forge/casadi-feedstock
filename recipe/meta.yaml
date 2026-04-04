@@ -52,6 +52,7 @@ requirements:
     # libblasfeo is included as it is a public dependency of libfatrop
     - libblasfeo  # [unix]
     - libfatrop  # [unix]
+    - mumps-seq
   run:
     - python
 
