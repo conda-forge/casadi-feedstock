@@ -6,6 +6,8 @@ c_stdlib:
 - sysroot
 c_stdlib_version:
 - '2.17'
+casadi:
+- '3.7'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -17,7 +19,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 eigen_abi_devel:
-- 3.4.0
+- 5.0.1
 ipopt:
 - 3.14.19
 libblas:
@@ -28,6 +30,8 @@ liblapack:
 - 3.9.* *netlib
 libosqp:
 - 1.0.0
+mumps_seq:
+- 5.8.2
 numpy:
 - '2'
 pin_run_as_build:

@@ -14,9 +14,10 @@ source:
     - patches/0003-Modernize-Python-find_package.patch
     - patches/0004-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
     - patches/0005-support-osqp1-backport-pr-4105.patch
+    - patches/0006-Fix-FindEigen3-cmake.patch
 
 build:
-  number: 2
+  number: 3
   rpaths:
     - lib/
     - lib/{{ name }}/
