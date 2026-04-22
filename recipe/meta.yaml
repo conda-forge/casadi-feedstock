@@ -17,7 +17,7 @@ source:
     - patches/0006-Fix-FindEigen3-cmake.patch
 
 build:
-  number: 3
+  number: 4
   rpaths:
     - lib/
     - lib/{{ name }}/
