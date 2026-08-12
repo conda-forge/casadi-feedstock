@@ -15,9 +15,12 @@ source:
     - patches/0004-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch
     - patches/0005-support-osqp1-backport-pr-4105.patch
     - patches/0006-Fix-FindEigen3-cmake.patch
+    # Test for the replacement of the RTLD_DEEPBIND environ workaround, see
+    # https://github.com/casadi/casadi/issues/4373
+    - patches/0007-Publish-an-owned-environ-snapshot-for-RTLD_DEEPBIND-.patch
 
 build:
-  number: 4
+  number: 5
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -69,6 +72,10 @@ test:
     - python ipopt_nl.py
     # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93
     - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]
+    # Same, but with the OMP_ variables set from Python at runtime rather than
+    # exported into the process before start-up: this exercises the setenv path
+    # (environ gets reallocated) before the plugin is dlopen'd.
+    - env -u OMP_CANCELLATION -u OMP_PROC_BIND python -c "import os; os.environ['OMP_CANCELLATION']='TRUE'; os.environ['OMP_PROC_BIND']='TRUE'; exec(open('ipopt_nl.py').read())" spral  # [linux]
     - test $(pip list | grep casadi | tr -s " " | grep $PKG_VERSION | wc -l) -eq 1  # [unix]
     - cmake-package-check casadi --targets casadi::casadi
   requires:
