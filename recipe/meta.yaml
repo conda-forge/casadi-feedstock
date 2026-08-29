@@ -1,5 +1,5 @@
 {% set name = "casadi" %}
-{% set version = "3.7.2" %}
+{% set version = "3.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ version }}.zip
   url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip
-  sha256: 4b9c9e9020a1f4e394c472aa49f86da573e3e14170d526d45724d539864cf038
+  sha256: 5c22af75eecb88d0efcfb13b80c858475f219ebf5a32b05eae609eb01e23159f
   patches:
     - patches/0001-Rename-qpOASES-namespace-to-casadi_qpOASES.patch
     - patches/0003-Modernize-Python-find_package.patch
@@ -17,7 +17,7 @@ source:
     - patches/0006-Fix-FindEigen3-cmake.patch
 
 build:
-  number: 4
+  number: 0
   rpaths:
     - lib/
     - lib/{{ name }}/
