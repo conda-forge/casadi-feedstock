@@ -17,7 +17,7 @@ source:
     - patches/0006-Fix-FindEigen3-cmake.patch
 
 build:
-  number: 4
+  number: 5
   rpaths:
     - lib/
     - lib/{{ name }}/
@@ -29,7 +29,7 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
-    - pkg-config
+    - pkgconf
     - cmake
     - ninja
     - swig
